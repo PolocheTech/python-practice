@@ -26,7 +26,7 @@ def menu():
             crear_cliente()
         if i == 2:
             # opcion para ver clientes creados
-        if i == 3:
+        #if i == 3:
             Cliente.calcular_total_pagar()
 
 def crear_cliente():
