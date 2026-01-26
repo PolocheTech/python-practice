@@ -17,20 +17,6 @@ class Cliente():
         descuento = self.calcular_descuento()
         return self.valor_compra - descuento
     
-"""def menu():
-    menu_usuario = int(input("Que opcion deseas usar\n1. Crear Cliente\n2. Ver Clientes\n3. Calcular total a pagar de un cliente\n4. Salir"))
-    for i in menu_usuario:
-        if i > 4:
-            break
-        if i == 1:
-            crear_cliente()
-        if i == 2:
-            # opcion para ver clientes creados
-        #if i == 3:
-            Cliente.calcular_total_pagar()"""
-
-clientes = []
-
 def validar_valor_compra():
     while True:
         try:
@@ -43,21 +29,41 @@ def validar_valor_compra():
             print("Error: debes ingresar un número válido.")
 
 def crear_cliente():
-    while True:
-        nombre_cliente = str(input("Ingresar nombre de usuario\n>>> ")),
-        valor_cliente = float(input("Ingresar valor de las compras\n>>> "))
-
-        return
+    nombre_cliente = str(input("Ingresar tu nombre\n>>> "))
+    valor_de_las_compras = validar_valor_compra()
+    cliente = Cliente(nombre_cliente, valor_de_las_compras)
+    return cliente
 
 def main():
-    print("Bienvenido al Banco Rosalia")
-    cliente = crear_cliente()
+    lista_clientes = []
+    
+    opcion = input("\nBienvenido desear crear algun cliente? [s/n]\n>>> ").lower()
 
-    descuento = cliente.calcular_descuento()
-    total = cliente.calcular_total_pagar()
+    if opcion == "s":
+        cantidad = int(input("Cuantos clientes desea crear? [1-10]\n>>> "))
 
-    print(f"Bienvenido !{cliente.nombre}¡")
-    print(f"Descuento aplicado: {descuento}")
-    print(f"Total a pagar: {total}")
+        if cantidad < 1 or cantidad > 10:
+            print("Cantidad no valida")
+            return
+        
+        for i in range(cantidad):
+            print(f"\nCliente #{i + 1}")
+            cliente = crear_cliente()
+            lista_clientes.append(cliente)
+
+    else:
+        print("No se crearon clientes")
+        return
+    
+    print("\n--- RESUMEN DE CLIENTES ---")
+
+    for cliente in lista_clientes:
+        descuento = cliente.calcular_descuento()
+        total = cliente.calcular_total_pagar()
+
+        print(f"\nCliente: {cliente.nombre}¡")
+        print(f"Valor compra: {cliente.valor_compra}")
+        print(f"Descuento aplicado: {descuento}")
+        print(f"Total a pagar: {total}")
 
 main()
