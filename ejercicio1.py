@@ -1,17 +1,37 @@
-lista_numeros = [1,2,3,4,5,6,7,8]
-
 def analizar_numeros(lista_numeros):
-    numeros_pares = 0
-    numeros_impares = 0
-    promedio_numeros = 0
-    numero_mayor = 0
-    numero_menor = 1
+
+    """
+    Analiza una lista de numero enteros y retorna estadisticas basicas
+
+    Args:
+        lista_numeros (list): Lista de números enteros a analizar
+    
+    Returns:
+        tuple: (pares, impares, promedio, numero_mayor, numero_menor)
+    """
+    if len(lista_numeros) == 0:
+        return {"error": "La lista no puede estar vacía"}
+
+    contador_pares = 0
+    contador_impares = 0
+    promedio = 0
+    numero_mayor = lista_numeros[0]
+    numero_menor = lista_numeros[0]
     for i in (lista_numeros):
-        if i % 2 == 0: numeros_pares += 1
-        elif i % 2 == 1: numeros_impares += 1
+        if i % 2 == 0: contador_pares += 1
+        else: contador_impares += 1
         if i > numero_mayor: numero_mayor = i
         if i < numero_menor: numero_menor = i
-        promedio_numeros += i
-    return numeros_pares, numeros_impares, numero_mayor, numero_menor, promedio_numeros
+        promedio += i
+    
+    promedio = promedio / len(lista_numeros)
+        
+    return {
+        "pares": contador_pares,
+        "impares": contador_impares,
+        "promedio": promedio,
+        "numero_mayor": numero_mayor,
+        "numero_menor": numero_menor,
+    }
 
-print(analizar_numeros(lista_numeros))
+print(analizar_numeros([7]))
